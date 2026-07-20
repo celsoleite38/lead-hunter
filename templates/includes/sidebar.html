@@ -1,43 +1,46 @@
-<div class="list-group rounded-0">
+{% url 'core:home' as url_dashboard %}
 
-    <a href="#" class="list-group-item list-group-item-action">
+<nav class="lh-sidebar">
 
+    <div class="lh-nav-group-label">Visão geral</div>
+
+    <a href="{{ url_dashboard }}" class="lh-nav-link{% if request.resolver_match.url_name == 'home' %} active{% endif %}">
         <i class="bi bi-speedometer2"></i>
-
         Dashboard
-
     </a>
 
-    <a href="#" class="list-group-item list-group-item-action">
+    <div class="lh-nav-group-label mt-3">Prospecção</div>
 
+    <a href="#" class="lh-nav-link">
         <i class="bi bi-folder"></i>
-
         Projetos
-
+        <span class="lh-nav-badge">Em breve</span>
     </a>
 
-    <a href="#" class="list-group-item list-group-item-action">
-
+    <a href="#" class="lh-nav-link">
         <i class="bi bi-search"></i>
-
         Pesquisas
-
+        <span class="lh-nav-badge">Em breve</span>
     </a>
 
-    <a href="#" class="list-group-item list-group-item-action">
-
+    <a href="#" class="lh-nav-link">
         <i class="bi bi-people"></i>
-
         Prospects
-
+        <span class="lh-nav-badge">Em breve</span>
     </a>
 
-    <a href="#" class="list-group-item list-group-item-action">
+    <div class="lh-nav-group-label mt-3">Gestão</div>
 
+    <a href="#" class="lh-nav-link">
         <i class="bi bi-briefcase"></i>
-
         CRM
-
+        <span class="lh-nav-badge">Em breve</span>
     </a>
 
-</div>
+    <a href="#" class="lh-nav-link">
+        <i class="bi bi-credit-card"></i>
+        Plano e assinatura
+        <span class="lh-nav-badge">Em breve</span>
+    </a>
+
+</nav>

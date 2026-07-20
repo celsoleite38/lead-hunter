@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -9,11 +10,21 @@
 
     <title>{% block title %}Lead Hunter{% endblock %}</title>
 
+    <!-- Fontes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@700;800&family=JetBrains+Mono:wght@600;700&display=swap" rel="stylesheet">
+
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Bootstrap Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Lead Hunter design system -->
+    <link href="{% static 'css/dashboard.css' %}" rel="stylesheet">
+
+    {% block extra_css %}{% endblock %}
 
 </head>
 
@@ -21,17 +32,28 @@
 
 {% include "includes/navbar.html" %}
 
-<div class="container-fluid">
+<div class="container-fluid p-0">
 
-    <div class="row">
+    <div class="row g-0">
 
-        <div class="col-2">
+        <div class="col-lg-2 lh-sidebar-col" id="lhSidebar">
 
             {% include "includes/sidebar.html" %}
 
         </div>
 
-        <div class="col-10 p-4">
+        <div class="col-lg-10 p-4">
+
+            <nav aria-label="breadcrumb" class="lh-breadcrumbs">
+                <ol class="breadcrumb mb-0">
+                    {% block breadcrumbs %}
+                        <li class="breadcrumb-item"><a href="{% url 'home' %}">Início</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">{% block breadcrumb_current %}Dashboard{% endblock %}</li>
+                    {% endblock %}
+                </ol>
+            </nav>
+
+            {% include "includes/messages.html" %}
 
             {% block content %}
             {% endblock %}
@@ -45,6 +67,14 @@
 {% include "includes/footer.html" %}
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    document.getElementById('lhSidebarToggle')?.addEventListener('click', function () {
+        document.getElementById('lhSidebar').classList.toggle('show');
+    });
+</script>
+
+{% block extra_js %}{% endblock %}
 
 </body>
 </html>

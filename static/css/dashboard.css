@@ -1,0 +1,467 @@
+/* ==========================================================
+   Lead Hunter — Design tokens
+   Conceito: radar / mira de caça a leads.
+   Navy profundo (confiança/dados) + verde-sinal (achado/ativo)
+   ========================================================== */
+
+:root {
+  --lh-navy-950: #0a1220;
+  --lh-navy-900: #0f1b2d;
+  --lh-navy-800: #16233a;
+  --lh-navy-700: #1f3050;
+  --lh-navy-600: #2c4570;
+
+  --lh-signal: #00d9a3;
+  --lh-signal-dim: rgba(0, 217, 163, 0.12);
+  --lh-signal-text: #00a37a;
+
+  --lh-amber: #ffb020;
+  --lh-amber-dim: rgba(255, 176, 32, 0.14);
+
+  --lh-danger: #ff5470;
+  --lh-danger-dim: rgba(255, 84, 112, 0.12);
+
+  --lh-bg: #f4f6fa;
+  --lh-surface: #ffffff;
+  --lh-border: #e4e8f0;
+  --lh-text: #16233a;
+  --lh-text-muted: #6b7690;
+
+  --font-display: "Manrope", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+}
+
+body {
+  background: var(--lh-bg);
+  color: var(--lh-text);
+  font-family: var(--font-body);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  color: var(--lh-navy-900);
+}
+
+/* ---------------- Topbar ---------------- */
+
+.lh-topbar {
+  background: var(--lh-surface);
+  border-bottom: 1px solid var(--lh-border);
+  padding: 0.65rem 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  position: sticky;
+  top: 0;
+  z-index: 1030;
+}
+
+.lh-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.05rem;
+  color: var(--lh-navy-900);
+  text-decoration: none;
+  letter-spacing: -0.01em;
+}
+
+.lh-brand-mark {
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
+  background: var(--lh-navy-900);
+  color: var(--lh-signal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.05rem;
+  flex-shrink: 0;
+}
+
+.lh-sidebar-toggle {
+  border: 1px solid var(--lh-border);
+  background: var(--lh-surface);
+  border-radius: 8px;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--lh-text-muted);
+}
+
+.lh-sidebar-toggle:hover {
+  background: var(--lh-bg);
+  color: var(--lh-navy-900);
+}
+
+.lh-topbar-spacer {
+  flex: 1;
+}
+
+.lh-user-chip {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.3rem 0.6rem 0.3rem 0.3rem;
+  border-radius: 999px;
+  border: 1px solid var(--lh-border);
+  background: var(--lh-bg);
+  color: var(--lh-text);
+  text-decoration: none;
+}
+
+.lh-user-chip:hover {
+  color: var(--lh-navy-900);
+  border-color: var(--lh-navy-600);
+}
+
+.lh-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--lh-navy-900);
+  color: var(--lh-signal);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* ---------------- Sidebar ---------------- */
+
+.lh-sidebar {
+  background: var(--lh-navy-900);
+  min-height: calc(100vh - 61px);
+  padding: 1.1rem 0.75rem;
+}
+
+.lh-nav-group-label {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.35);
+  padding: 0.5rem 0.75rem 0.35rem;
+  font-weight: 700;
+}
+
+.lh-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.55rem 0.75rem;
+  border-radius: 8px;
+  color: rgba(255, 255, 255, 0.68);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-bottom: 0.15rem;
+  position: relative;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.lh-nav-link i {
+  font-size: 1.05rem;
+  width: 20px;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.lh-nav-link:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff;
+}
+
+.lh-nav-link:hover i {
+  color: var(--lh-signal);
+}
+
+.lh-nav-link.active {
+  background: var(--lh-navy-800);
+  color: #fff;
+}
+
+.lh-nav-link.active::before {
+  content: "";
+  position: absolute;
+  left: -0.75rem;
+  top: 0.35rem;
+  bottom: 0.35rem;
+  width: 3px;
+  border-radius: 0 3px 3px 0;
+  background: var(--lh-signal);
+}
+
+.lh-nav-link.active i {
+  color: var(--lh-signal);
+}
+
+.lh-nav-badge {
+  margin-left: auto;
+  font-size: 0.62rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  padding: 0.12rem 0.4rem;
+  border-radius: 999px;
+  background: rgba(255, 176, 32, 0.18);
+  color: var(--lh-amber);
+}
+
+/* ---------------- Cards & KPIs ---------------- */
+
+.lh-page-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+.lh-eyebrow {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: var(--lh-signal-text);
+  margin-bottom: 0.2rem;
+}
+
+.lh-page-title {
+  font-size: 1.55rem;
+  font-weight: 800;
+  margin: 0;
+  color: var(--lh-navy-900);
+}
+
+.lh-page-subtitle {
+  color: var(--lh-text-muted);
+  font-size: 0.92rem;
+  margin-top: 0.15rem;
+}
+
+.lh-card {
+  background: var(--lh-surface);
+  border: 1px solid var(--lh-border);
+  border-radius: 14px;
+}
+
+.lh-kpi {
+  padding: 1.1rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.lh-kpi-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--lh-signal-dim);
+  color: var(--lh-signal-text);
+  font-size: 1.05rem;
+}
+
+.lh-kpi-value {
+  font-family: var(--font-mono);
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: var(--lh-navy-900);
+  line-height: 1;
+}
+
+.lh-kpi-label {
+  font-size: 0.82rem;
+  color: var(--lh-text-muted);
+  font-weight: 500;
+}
+
+.lh-kpi-hint {
+  font-size: 0.76rem;
+  color: var(--lh-text-muted);
+}
+
+/* ---------------- Empty states ---------------- */
+
+.lh-empty {
+  padding: 2.5rem 1.5rem;
+  text-align: center;
+}
+
+.lh-empty-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: var(--lh-bg);
+  border: 1px dashed var(--lh-border);
+  color: var(--lh-text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  margin: 0 auto 0.9rem;
+}
+
+.lh-empty-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--lh-navy-900);
+  margin-bottom: 0.3rem;
+}
+
+.lh-empty-text {
+  color: var(--lh-text-muted);
+  font-size: 0.88rem;
+  max-width: 360px;
+  margin: 0 auto 1.1rem;
+}
+
+/* ---------------- Agent roadmap ---------------- */
+
+.lh-agent-card {
+  border: 1px solid var(--lh-border);
+  border-radius: 12px;
+  padding: 0.9rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.lh-agent-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: var(--lh-navy-900);
+  color: var(--lh-signal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+}
+
+.lh-agent-name {
+  font-weight: 700;
+  font-size: 0.86rem;
+  color: var(--lh-navy-900);
+}
+
+.lh-agent-desc {
+  font-size: 0.76rem;
+  color: var(--lh-text-muted);
+  flex: 1;
+}
+
+.lh-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  width: fit-content;
+}
+
+.lh-pill-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.lh-pill-dev {
+  background: var(--lh-amber-dim);
+  color: #a56a00;
+}
+
+.lh-pill-dev .lh-pill-dot {
+  background: var(--lh-amber);
+}
+
+.lh-pill-active {
+  background: var(--lh-signal-dim);
+  color: var(--lh-signal-text);
+}
+
+.lh-pill-active .lh-pill-dot {
+  background: var(--lh-signal);
+}
+
+/* ---------------- Buttons ---------------- */
+
+.btn-lh-primary {
+  background: var(--lh-navy-900);
+  border-color: var(--lh-navy-900);
+  color: #fff;
+  font-weight: 600;
+}
+
+.btn-lh-primary:hover {
+  background: var(--lh-navy-800);
+  border-color: var(--lh-navy-800);
+  color: #fff;
+}
+
+.btn-lh-primary:disabled,
+.btn-lh-primary.disabled {
+  background: var(--lh-navy-700);
+  border-color: var(--lh-navy-700);
+  opacity: 0.55;
+}
+
+/* ---------------- Breadcrumbs ---------------- */
+
+.lh-breadcrumbs {
+  font-size: 0.82rem;
+  margin-bottom: 0.9rem;
+}
+
+.lh-breadcrumbs a {
+  color: var(--lh-text-muted);
+  text-decoration: none;
+}
+
+.lh-breadcrumbs a:hover {
+  color: var(--lh-signal-text);
+}
+
+.lh-breadcrumbs .active {
+  color: var(--lh-navy-900);
+  font-weight: 600;
+}
+
+/* ---------------- Responsive ---------------- */
+
+@media (max-width: 991.98px) {
+  .lh-sidebar-col {
+    position: fixed;
+    top: 61px;
+    left: 0;
+    bottom: 0;
+    width: 250px;
+    z-index: 1025;
+    transform: translateX(-100%);
+    transition: transform 0.2s ease;
+  }
+
+  .lh-sidebar-col.show {
+    transform: translateX(0);
+  }
+
+  .lh-sidebar {
+    min-height: 100%;
+  }
+}

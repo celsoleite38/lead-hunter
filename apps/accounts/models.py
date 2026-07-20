@@ -55,6 +55,21 @@ class User(AbstractUser):
         default=False
     )
 
+    email_verified = models.BooleanField(
+        "E-mail verificado",
+        default=False
+    )
+
+    can_add_company = models.BooleanField(
+        "Pode cadastrar mais empresas",
+        default=False
+    )
+
+    max_companies = models.PositiveIntegerField(
+        "Máximo de empresas",
+        default=1
+    )
+
     created_at = models.DateTimeField(
         auto_now_add=True
     )

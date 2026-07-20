@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block title %}Empresas - Lead Hunter{% endblock %}
+
+{% block content %}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="mb-0">
+        <i class="bi bi-building"></i> Empresas
+    </h2>
+    {% if can_add %}
+    <a href="{% url 'empresa_create' %}" class="btn btn-dark">
+        <i class="bi bi-plus-lg"></i> Nova Empresa
+    </a>
+    {% endif %}
+</div>
+
+{% if companies %}
+<div class="card shadow">
+    <div class="table-responsive">
+        <table class="table table-hover mb-0">
+            <thead class="table-light">
+                <tr>
+                    <th>Nome</th>
+                    <th>Nome fantasia</th>
+                    <th>Documento</th>
+                    <th>E-mail</th>
+                    <th>Limite usuários</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for company in companies %}
+                <tr>
+                    <td>{{ company.name }}</td>
+                    <td>{{ company.trade_name|default:"-" }}</td>
+                    <td>{{ company.document|default:"-" }}</td>
+                    <td>{{ company.email|default:"-" }}</td>
+                    <td>{{ company.max_users }}</td>
+                    <td>
+                        <a href="{% url 'empresa_edit' company.slug %}" class="btn btn-sm btn-outline-secondary">
+                            <i class="bi bi-pencil"></i>
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% else %}
+<div class="card shadow">
+    <div class="card-body text-center py-5">
+        <i class="bi bi-building display-4 text-muted"></i>
+        <p class="text-muted mt-3">Nenhuma empresa cadastrada.</p>
+        <a href="{% url 'empresa_create' %}" class="btn btn-dark">
+            <i class="bi bi-plus-lg"></i> Cadastrar empresa
+        </a>
+    </div>
+</div>
+{% endif %}
+
+{% endblock %}

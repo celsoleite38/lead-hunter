@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+
+{% block title %}{% if company %}Editar{% else %}Nova{% endif %} Empresa - Lead Hunter{% endblock %}
+
+{% block content %}
+
+<h2 class="mb-4">
+    <i class="bi bi-building"></i>
+    {% if company %} Editar Empresa {% else %} Nova Empresa {% endif %}
+</h2>
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="card shadow">
+            <div class="card-body">
+                <form method="post" novalidate>
+                    {% csrf_token %}
+
+                    {% for field in form %}
+                    <div class="mb-3">
+                        <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+                        {{ field }}
+                        {% if field.errors %}
+                        <div class="invalid-feedback d-block">
+                            {% for error in field.errors %}{{ error }}{% endfor %}
+                        </div>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+
+                    {% if company %}
+                    <div class="mb-3">
+                        <label class="form-label">Limite de usuários</label>
+                        <input type="text" class="form-control" value="{{ company.max_users }}" readonly disabled>
+                        <small class="text-muted">Definido pelo administrador.</small>
+                    </div>
+                    {% endif %}
+
+                    <button type="submit" class="btn btn-dark">
+                        <i class="bi bi-check-lg"></i> Salvar
+                    </button>
+                    <a href="{% url 'empresa' %}" class="btn btn-outline-secondary">Cancelar</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+(function() {
+    const docInput = document.getElementById('id_document');
+    const phoneInput = document.getElementById('id_phone');
+
+    if (docInput) {
+        docInput.addEventListener('input', function(e) {
+            let v = e.target.value.replace(/\D/g, '');
+            if (v.length > 14) v = v.substring(0, 14);
+
+            if (v.length <= 11) {
+                // CPF: 000.000.000-00
+                v = v.replace(/(\d{3})(\d)/, '$1.$2');
+                v = v.replace(/(\d{3})(\d)/, '$1.$2');
+                v = v.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+            } else {
+                // CNPJ: 00.000.000/0001-00
+                v = v.replace(/^(\d{2})(\d)/, '$1.$2');
+                v = v.replace(/^(\d{2})\.(\d{3})(\d)/, '$1.$2.$3');
+                v = v.replace(/\.(\d{3})(\d)/, '.$1/$2');
+                v = v.replace(/(\d{4})(\d)/, '$1-$2');
+            }
+
+            e.target.value = v;
+        });
+    }
+
+    if (phoneInput) {
+        phoneInput.addEventListener('input', function(e) {
+            let v = e.target.value.replace(/\D/g, '');
+            if (v.length > 11) v = v.substring(0, 11);
+
+            if (v.length <= 10) {
+                // Fixo: (00) 0000-0000
+                v = v.replace(/^(\d{2})(\d)/g, '($1) $2');
+                v = v.replace(/(\d{4})(\d)/, '$1-$2');
+            } else {
+                // Celular: (00) 00000-0000
+                v = v.replace(/^(\d{2})(\d)/g, '($1) $2');
+                v = v.replace(/(\d{5})(\d)/, '$1-$2');
+            }
+
+            e.target.value = v;
+        });
+    }
+})();
+</script>
+{% endblock %}

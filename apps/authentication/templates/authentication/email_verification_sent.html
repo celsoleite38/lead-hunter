@@ -1,0 +1,27 @@
+{% extends "authentication/base_auth.html" %}
+
+{% block title %}Verifique seu e-mail - Lead Hunter{% endblock %}
+
+{% block content %}
+
+<div class="row justify-content-center mt-5">
+    <div class="col-md-5">
+        <div class="card shadow">
+            <div class="card-body p-4 text-center">
+                <i class="bi bi-envelope-check display-1 text-success mb-3"></i>
+                <h3 class="mb-3">Verifique seu e-mail</h3>
+                <p class="text-muted">
+                    Enviamos um link de confirmação para o seu e-mail.
+                    <br>Clique no link para ativar sua conta.
+                </p>
+                <hr>
+                <p class="text-muted mb-0">
+                    Não recebeu? Verifique a pasta de spam ou solicite um novo link de verificação.
+                    <a href="{% url 'login' %}" class="text-decoration-none">volte ao login</a>.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

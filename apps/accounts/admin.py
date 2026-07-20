@@ -14,6 +14,8 @@ class CustomUserAdmin(UserAdmin):
         "first_name",
         "last_name",
         "is_owner",
+        "email_verified",
+        "max_companies",
         "is_active",
         "is_staff",
     )
@@ -47,6 +49,8 @@ class CustomUserAdmin(UserAdmin):
                 "is_staff",
                 "is_superuser",
                 "is_owner",
+                "email_verified",
+                "max_companies",
                 "groups",
                 "user_permissions",
             )

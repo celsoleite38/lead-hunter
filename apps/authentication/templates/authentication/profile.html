@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %}Meu Perfil - Lead Hunter{% endblock %}
+
+{% block content %}
+
+<h2 class="mb-4">
+    <i class="bi bi-person-circle"></i> Meu Perfil
+</h2>
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="card shadow">
+            <div class="card-body">
+                <form method="post" enctype="multipart/form-data" novalidate>
+                    {% csrf_token %}
+
+                    {% for field in form %}
+                    <div class="mb-3">
+                        <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+                        {{ field }}
+                        {% if field.errors %}
+                        <div class="invalid-feedback d-block">
+                            {% for error in field.errors %}{{ error }}{% endfor %}
+                        </div>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+
+                    <button type="submit" class="btn btn-dark">
+                        <i class="bi bi-check-lg"></i> Salvar Alterações
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card shadow">
+            <div class="card-body text-center">
+                {% if user.avatar %}
+                <img src="{{ user.avatar.url }}" alt="Avatar"
+                     class="rounded-circle mb-3" width="120" height="120"
+                     style="object-fit: cover;">
+                {% else %}
+                <i class="bi bi-person-circle display-1 text-muted mb-3"></i>
+                {% endif %}
+                <h5>{{ user.get_full_name }}</h5>
+                <p class="text-muted">{{ user.email }}</p>
+                <a href="{% url 'password_change' %}" class="btn btn-outline-secondary btn-sm">
+                    <i class="bi bi-key"></i> Alterar Senha
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
