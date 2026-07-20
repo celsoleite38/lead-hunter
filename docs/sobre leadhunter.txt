@@ -1,0 +1,45 @@
+
+A visão do produto
+
+Eu não faria um "scraper".
+
+Eu faria uma plataforma semelhante ao Apollo.io, ZoomInfo, Lusha ou Hunter.io, porém focada inicialmente no mercado brasileiro e nas pequenas e médias empresas.
+
+Nome provisório:
+
+Lead Hunter AI
+
+ou
+
+ProspectAI
+
+O problema que ele resolve
+
+Hoje uma empresa quer vender.
+
+Ela não sabe:
+
+quem comprará
+onde encontrar
+como falar
+quando falar
+qual mensagem enviar
+como acompanhar
+
+O Lead Hunter resolve tudo isso.
+
+Mas eu iria ainda mais longe...
+O Lead Hunter seria composto por "Agentes de IA".
+
+Não seria apenas um sistema.
+
+Cada agente teria uma função específica:
+
+🔎 Agente Pesquisador – Localiza empresas.
+📞 Agente Enriquecedor – Busca telefone, e-mail, redes sociais e outras informações públicas.
+🧹 Agente Validador – Remove duplicidades, verifica e organiza os dados.
+🎯 Agente Classificador – Calcula o Lead Score e identifica oportunidades.
+✍️ Agente Copywriter – Escreve mensagens personalizadas para e-mail, WhatsApp e LinkedIn.
+📈 Agente Comercial – Sugere prioridades, acompanha o funil e recomenda próximos passos.
+
+Esses agentes trabalham em sequência, transformando uma busca simples em uma lista priorizada de oportunidades.
